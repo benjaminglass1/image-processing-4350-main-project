@@ -1,0 +1,53 @@
+function adaptive_noise_filter
+    inputs: grayscale uint8 image im_orig, double variance_estimate
+    outputs: grayscale uint8 image im_out
+
+    for every pixel in the image
+        if (near edges of image)
+            im_out = im_orig;
+        else
+            calculate variance of 7x7 neighborhood of pixel
+            calculate mean of 7x7 neighborhood of pixel
+            apply adaptive noise filter
+
+
+
+function add_gaussian_noise
+    inputs: grayscale uint8 image im_orig, double var
+    outputs: grayscale uint8 image im_out
+
+    generate Gaussian noise matrix of mean 0, variance var, and size of image
+    add noise matrix to image
+    clip extreme values to uint8 range
+
+
+
+function gaussian_7x7
+    inputs: grayscale double image im_orig
+    outputs: grayscale double image im_out
+
+    apply 7x7 Gaussian LPF kernel to image by convolution
+
+
+
+function hsi_to_rgb
+    inputs: HSI double image im_hsi
+    outputs: RGB uint8 image im_rgb
+
+    for every pixel in the image
+        check if in RG sector, GB sector, or BR sector
+            calculate RGB values accordingly
+
+    scale values to uint8
+
+
+
+function rgb_to_hsi
+    inputs: RGB uint8 image im_rgb
+    outputs: HSI double image im_hsi
+
+    scale input to double in range [0,1]
+
+    for every pixel in the image
+        check if blue is less than/equal to green or vice versa
+            calculate HSI values accordingly
