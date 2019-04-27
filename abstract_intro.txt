@@ -1,0 +1,21 @@
+Abstract: 
+  We have been tasked with performing image restoration of a color image that has had some noise added to it.
+During this project we will explore the advantages and disadvantages of using the different color models in this process. 
+The first task involves adding noise to the given image and then using our prior knowledge of the noise to perform the restoration 
+of the image. The second task involves using the HSI model to filter the color components of the image before converting back to 
+the RGB color space. Then we will explain the concepts that we used during this process along with displaying our results.
+
+Intro: 
+  The purpose of this image processing project is to perform image restoration on a given color image. This group project was 
+assigned by our Image Processing teacher Dr. Ambrose Ononye to help us gain a better understanding of the image restoration 
+concepts that were taught during class. We will be limited to using a programming language called Matlab and its built-in 
+functions for all our image processing tasks. 
+  Color is a powerful tool that we as humans use to describe and identify objects. We can discern many more shades of color, 
+compared to the couple of shades of gray that we see.  Because of this color image processing has a wide variety of applications.  
+Being able to differentiate between these colors is key when trying to understand or convey information using images. Brightness, 
+hue, and saturation are the properties that we use to describe how we see and differentiate between different colors. 
+  Taking advantage of the different color models helps to facilitate the image restoration.
+process. By having prior knowledge of the noise, we apply two color models, HSI and RGB. In this project we manipulated the 
+properties of these color models to restore an image. The color models’ channels are furthermore split and processed individually 
+to produce the desired result.
+
