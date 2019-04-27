@@ -156,6 +156,12 @@ scaling_factor = double(max(max(max(diff_hsi_filtering))));
 diff_hsi_filtering = uint8((255/scaling_factor)*double(diff_hsi_filtering));
 diff_rgb_filtering = uint8((255/scaling_factor)*double(im_orig - im_filt));
 
+% Semicolons omitted to deliberately display info on command window.
+avg_rgb_error = mean(mean(mean(im_orig - im_filt)))
+avg_hsi_error = mean(mean(mean(im_orig - im_filt_hsi)))
+
+median_rgb_error = median(reshape((im_orig - im_filt),1,[],1))
+median_hsi_error = median(reshape((im_orig - im_filt_hsi),1,[],1))
 
 figure()
 subplot(1,2,1)
