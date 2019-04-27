@@ -1,0 +1,279 @@
+\documentclass{article}
+
+
+%%% Preamble %%%
+%
+%
+%
+
+\usepackage{babel}			% 	Expands text mode
+\usepackage{csquotes}			% 	Permits \enquote{quote} for quick quote encapsulation
+\usepackage{graphicx}			% 	Permits \includegraphics[size = x]{image}
+\usepackage{caption}			% 	Permits the void caption \caption*{}
+\usepackage{a4wide}			% 	Expand width of body lazily
+
+			%	Makes Table of Contents Functionally a table of Hyperlinks
+\usepackage{hyperref}
+\hypersetup{
+	colorlinks,
+	citecolor= black,
+	filecolor = black,
+	linkcolor = blue,
+	urlcolor = blue
+	}
+
+			%	Next Three Lines permit use of .tif images in \includegraphics
+\usepackage{epstopdf}
+\epstopdfDeclareGraphicsRule{.tif}{png}{.png}{convert #1 \OutputFile}
+\AppendGraphicsExtensions{.tif}
+
+
+\title{Final Project \\ EENG 4350.034 \\ Image Processing \\ Dr. Ononye}
+\author{Gibbons, Glass, \& Rodriguez}
+\date{04/27/2019}
+
+
+%
+%
+%
+%%% End of Preamble %%%
+
+
+%%% Body Document %%%
+%
+%
+%
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{gobble}
+
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+\hfill \\
+
+%\abstract{}
+\begin{abstract}
+
+%	The Abstract	should contain:
+%	First and foremostly: The information required to quickly inform somebody :
+%					whether or not 
+%			Reading your paper is a waste of their time.
+%
+%	Any related information that would benefit someone who reads your document
+%	Any topics covered within the document and to what level the contents are written
+%		such as for the benefit of:
+%		students, researchers, professors, engineers, professionals
+%
+%		MOST IMPORTANTLY OF ALL: 
+%			R E S P E C T
+%		  the time of your reader
+%
+%	An abstract should take less than 2-5 minutes to read depending on the professional field
+%	Students should never have an abstract that takes longer than 2 minutes to read.
+%		NEVER
+%
+
+
+\end{abstract}
+
+
+\pagebreak
+
+\tableofcontents
+
+\pagenumbering{roman}
+
+\pagebreak
+
+\section{Introduction}
+
+% 	The Introduction should contain:
+% 	the group's mission, from who the project was given and under what circumstance
+% 	The circumstances include but may not be limited to:
+% 	Course Objective {per stated in syllabus or procedure provided - reference to the text properly inside the introduction}
+%	The intended audience if not explicit in the syllabus or procedure ** This should already be stated in the abstract
+%	
+
+
+\pagenumbering{arabic}
+
+
+
+\pagebreak
+
+\section{Theory}
+
+%	The Theory should contain:
+%	Reference to the particular concepts in the field that are immediately drawn from
+%
+%	For example, an experiment involving testing logic ICs on a breadboard involves
+%		The application of Ohm's Law & the Principles of Logical Definitions
+%			such as Ohm's Law:
+%				1. Resistivity & Conductivity
+%				2. Voltage Drop relationship to conductivity
+%			such as Principles of Logical Definition
+%				1. AND includes both terms completely
+%				2. OR includes at least one term
+%				3. eXclusive-OR (XOR) includes ONLY one term
+%				4. NOT is true only if the formentioned term is not present
+%			and maybe including such in binary terms of 0's & 1's.
+%
+
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%									%
+%		Personal Outline For Project			%
+%									%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%
+%
+%	1. 	Gaussian Noise
+%	2.	RGB file construction
+%	3.	HSI Utilization
+%	4. 	Adaptive Noise Reduction *Ch 5 Section 3*
+%
+%
+
+\noindent
+The theory behind this project is four fold:\\
+\indent 
+1) Inspecting the Gaussian Noise Model .\\
+\indent
+2) Exegesis on RGB image structure (Red, Green, \& Blue). \\
+\indent
+3) The application of HSI Color Model Extrapolation (RGB to Hue, Saturation, \& Intensity).\\
+\indent
+4) The utility of Adaptive Noise Reduction.
+
+\subsection*{Gaussian Noise Model}
+\noindent
+The Gaussian Noise Model is a practical way of simulating noise in many circumstances across many fields.\\
+\hfill \\
+It is derived from the Gaussian Statistical Model, shown in the following equation as well as figure:\\
+\[ \scalebox{2}{$ $\qquad \qquad \quad$
+pdf(x) = \frac{1}{\sigma \sqrt{2 \cdot \pi}} e^{\frac{1}{2}\big(\frac{x-\mu}{\sigma}\big)^{2}} $\qquad \qquad \quad (1)$
+$}\]
+
+\begin{figure}[h!]
+\includegraphics[scale = 0.38]{miscImages/GaussExample.jpg}
+\caption{Gaussian Curve Generated In MATLAB}
+\end{figure}
+
+\pagebreak
+\noindent
+Gaussian Noise may take place via overlapping signals that are themselves transmitted in any mode similar to
+oscillating sinusoidal signals, and may generate white noise.  This is form of white noise taught to University 
+Physics II students with Gaussian spectrum distribution curves spanning the spectrum of visible light.  Normally 
+with Red, Green, and Blue Gaussian spectrum distributions overlapping each other.\\
+\hfill \\
+Gaussian Noise may further be understood as sensor/signal perturbations that oscillate about the mean or true,
+desired value.  This perturbation creates an effect whereby the most likely events are the central points of oscillation
+unto the effect that the mean is the most likely actual signal.  Hence, one may achieve this effect by applying a 
+Gaussian Noise Filter over the signal.\\
+\hfill \\
+However, the particular Gaussian Noise applied in this project is that across a two dimensional matrix, namely: a
+photograph or image.
+
+\subsection*{RGB Image Structure}
+
+RGB is an acronym for the Red, Green, and Blue Color Model.\\
+\hfill \\
+
+
+
+
+\subsection*{HSI}
+
+
+\subsection*{Adaptive Noise Reduction}
+
+%\pagebreak
+
+%\section{Procedure}
+
+%	The Procedure should contain all necessary actions in order to acheive your result
+
+\pagebreak
+
+\section{Methodology}
+
+%	The Methodology should contain but may not be limited to:
+%		The general method that is applied to each portion of the procedure.
+%		Any techniques applied to obtain the results achieved
+%		Point to discussion if there were attempted techniques that failed to achieve the desired result
+%			and were not used to obtain your final results.
+%		THEN discuss their implications in the Discussion Section
+%
+%	The Methodology may also include a ``Calculations Section'' 
+%		wherein, one demonstrates the calculation processes required to obtain the desired results.
+%		This section may be used to present calculations and referred back to in the results section when 
+%		being cited.
+%
+
+
+
+
+\pagebreak
+
+\section{Results}
+
+%	The Results includes the final results of any calculations, images, or experiments
+%	The Results should have very limited elaboration::
+%			Let the Results Speak for Themselves
+%		Otherwise,
+%			Compile your results so that they are more easily understood
+%	Save any deep inspection for the discussion
+%
+
+
+\pagebreak
+
+\section{Discussion}
+
+%	See all the above and use your imagination
+%
+%
+
+\pagebreak
+
+\section{Conclusion}
+
+%	The conclusion should be a concise summary of the results and discussion.
+%
+%	The conclusion should assert whether or not you accomplished the goal of the experiment
+%	and with what margins or error and uncertainty.
+%
+
+
+\end{document}
