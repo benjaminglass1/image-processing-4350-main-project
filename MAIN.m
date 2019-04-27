@@ -128,6 +128,8 @@ im_filt_hsi(:,:,1) = im_filt_h;
 im_filt_hsi(:,:,2) = im_filt_s;
 im_filt_hsi(:,:,3) = im_i;
 
+im_filt_hsi = hsi_to_rgb(im_filt_hsi);
+
 figure()
 subplot(1,3,1)
 imshow(im_filt_h)
@@ -144,5 +146,21 @@ subplot(1,2,1)
 imshow(im_filt)
 title('RGB filtered image')
 subplot(1,2,2)
-imshow(hsi_to_rgb(im_filt_hsi))
+imshow(im_filt_hsi)
 title('HSI filtered image')
+
+% Conclusions about filtering accuracy
+
+diff_hsi_filtering = im_orig - im_filt_hsi;
+scaling_factor = double(max(max(max(diff_hsi_filtering))));
+diff_hsi_filtering = uint8((255/scaling_factor)*double(diff_hsi_filtering));
+diff_rgb_filtering = uint8((255/scaling_factor)*double(im_orig - im_filt));
+
+
+figure()
+subplot(1,2,1)
+imshow(diff_rgb_filtering)
+title('Scaled error of RGB filtering')
+subplot(1,2,2)
+imshow(diff_hsi_filtering)
+title('Scaled error of HSI filtering')
