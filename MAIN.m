@@ -6,7 +6,7 @@
 
 % TASK 1
 
-im_orig = imread('MainProjImage.tif');
+im_orig = imread('inputImages/MainProjImage.tif');
 
 im_orig_red = im_orig(:,:,1);
 im_orig_green = im_orig(:,:,2);
